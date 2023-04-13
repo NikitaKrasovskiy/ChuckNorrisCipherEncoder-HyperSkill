@@ -45,7 +45,7 @@ public class ChackNoris {
 		if (checkFirstBlockMessage(message)) return false;
 		
 		
-		if (isValidBinaryStringLength(decoded(message))) return false;
+		if (!isValidBinaryStringLength(decoded(message))) return false;
 		
 		return isFlag;
 	}
@@ -72,7 +72,7 @@ public class ChackNoris {
 	}
 	
 	private static boolean isValidBinaryStringLength(String binaryString) {
-		return binaryString.length() % 7 != 0;
+		return binaryString.length() % 7 == 0;
 	}
 	
 	private static boolean checkFirstBlockMessage(String message) {
@@ -152,12 +152,14 @@ public class ChackNoris {
 	}
 	
 	private static String binaryToString(String binaryString) {
-		ArrayList<String> lettersInBinary = new ArrayList<>();
+//		ArrayList<String> lettersInBinary = new ArrayList<>();
+		String[] lettersInBinary = new String[binaryString.length()];
 		StringBuilder sb = new StringBuilder();
 		
 		// Split at 7.
 		for (int i = 0; i < binaryString.length(); i += 7) {
-			lettersInBinary.add(binaryString.substring(i, i + 7));
+//			lettersInBinary.add(binaryString.substring(i, i + 7));
+			lettersInBinary[i] = binaryString.substring(i, i + 7);
 		}
 		
 		// Converts the binary to character.
